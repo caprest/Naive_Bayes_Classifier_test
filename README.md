@@ -1,0 +1,2 @@
+# Naive_Bayes_Classifier_test
+ナイーブベイズを使った記事分類器＋ウェブインターフェース
