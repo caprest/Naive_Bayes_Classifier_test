@@ -13,8 +13,8 @@ import json
 import sys
 import io # 追加
 import os
-os.system("chcp 65001")
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8') # 追加
+#os.system("chcp 65001")
+#sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8') # 追加
 
 
 
@@ -64,9 +64,7 @@ def clawling(url_list,save_name):
     order_of_value = ["title","source","sentence","label"]
     csv_writer.writerow(order_of_value)
     for value in values:
-        print(value)
-        csv_writer.writerow(value)
-        
+        csv_writer.writerow(value)    
     f.close()
         
 def test_clawler():
@@ -79,6 +77,7 @@ if __name__ == '__main__':
     p_save_data = "data-"+time_now+".csv"
     #I'll make branch if you don't need to make url list using argparse
     #temp_name = "urls-2017-02-09-21-43.csv"
-    test_clawler()
+    #test_clawler()
     make_url_list(p_save_url)
+    print("url_list_make_done")
     clawling(p_save_url,p_save_data)
