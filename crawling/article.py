@@ -25,12 +25,7 @@ def process_article(row):
                 a =paragraph.get_text()
         paragraphs = [paragraph.string if paragraph.string !=None else paragraph.get_text() for paragraph in articles]
         sentence = (" ").join(paragraphs).replace("\n", " ")
-        return {
-            "title":title,\
-            "source":source,\
-            "sentence":sentence,\
-            "label":label
-        }
+        return [title,source,sentence,label]
     except:
         print("Error Occurred at try to get "+row[0])
         return None
