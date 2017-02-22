@@ -2,23 +2,37 @@
 from natto import MeCab as mecab
 import pandas
 import numpy as np
+
 import argparse
 import re
 import collections
 import pickle
-"""
-This program is used for data cleansing
-"""
+import random
+random.seed(111)
+
 def read_data(p_data):
     df = pandas.read_csv(p_data,delimiter=" ",quoting=2,encoding="utf-8")
     header = df.columns
     values = df.values
     return header,values
 def train_test_split(values):
-    
+    train = []
+    test = []
+    train_rate = 0.9
+    train_num = np.floor(len([value for value in values if value[3] == 1])*0.9)
+    for label in range(1,9):
+        values_label = [value for value in values if value[3] == label]
+        length = len(values_label)
+        if length<train_num:
+            print("something wrong with label"+str(label))
+            pass
+        else:
+            random.shuffle(values_label)
+            train.extend(values_label[0:int(train_num)])
+            test.extend(values_label[int(train_num):])
 
-#data structure to make
-#dictionary which contains {word:[num_of_occur,...,num_of_occur]}
+    return train,test
+
 
 def parse_an_article(string):
     mc = mecab()
@@ -92,17 +106,20 @@ def make_counters(values):
 
 
 if __name__ == '__main__':
-    p_data = "../crawling/data-2017-02-18-15-28.csv"
+    parser = argparse.ArgumentParser(description="This script process data for machine learning")
+    parser.add_argument("path",type=str,help="path of your learning data")
+    parser.add_argument("-s","--split",action ="store_true")
+    args =parser.parse_args()
+    p_data = args.path
+    n_data = "".join(p_data.split(".")[:-1])
     header,values = read_data(p_data)
-    import sys
-    import io
-    import os 
-    os.system("chcp 65001")
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    counters = make_counters(values)
-    save_data("counters",counters)
-    dictionary = make_word_number_dict(counters)
-    save_data("dictionary",dictionary)
+    train,test = train_test_split(values)
+    counters = make_counters(train)
+    save_data("train"+n_data,train)
+    save_data("test"+n_data,test)
+    if args.split == False:
+        dictionary = make_word_number_dict(counters)
+        save_data("dictionary_"+n_data,dictionary)
 
     
     
