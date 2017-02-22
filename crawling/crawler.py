@@ -34,7 +34,7 @@ categories =[
 
 def make_url_list(save_name):
     f = open(save_url,'w')
-    for i in range(1,8):
+    for i in range(1,9):
         urls =[]
         for j in range(1,40):
             address = "https://gunosy.com/categories/{i}?page={j}".format(i=i,j=j)

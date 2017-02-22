@@ -10,7 +10,7 @@ from time import sleep
 def process_article(row):
     url = row[0]
     label = row[1]
-    print("GET "+url+" ...")
+    print("GET "+url+" label="+ str(label) + " ...")
     data = requests.get(url)
     content = data.content
     soup = BeautifulSoup(content,"lxml")
