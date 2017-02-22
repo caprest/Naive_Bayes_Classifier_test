@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'classify/style.css' %}" />
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<h1>Classifier</h1>
+<p>Please insert URL to classify</p>
+<form action="{% url 'classify:index'  %}" method="POST">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Submit" />
+</form>

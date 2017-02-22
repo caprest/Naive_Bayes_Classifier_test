@@ -1,0 +1,6 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'classify/style.css' %}" />
+
+{{url}} is {{category}}
+
+<a href={% url 'classify:index' %}>return</a>
