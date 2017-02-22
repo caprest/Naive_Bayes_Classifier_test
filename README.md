@@ -10,14 +10,14 @@ readability-lxml
 
 ##使い方
 まずクローラーを走らせる
-    python clawler.py
+　　　　python clawler.py
 続いて学習用データを生成する。
-    python data_process.py　[保存ファイル名]
+　　　　python data_process.py　[保存ファイル名]
 生成された dictionary{hogehoge} のパスを/classify/views.py のpathに追加する。
 
 あとはDjangoのDBを初期化するなどして、/classifyにアクセスすれば使える。Accuracyを求めたい場合は、classify.pyに
 dictioanry{hogehoge}のパスを追加してやり、
-    python classify.py
+　　　　python classify.py
 を実行すると、testが走ると同時にaccuracyも計算される。
 ##学習データ
 今回はGunosyからスクレイピングすることで以下の8つの分類を学習する。
