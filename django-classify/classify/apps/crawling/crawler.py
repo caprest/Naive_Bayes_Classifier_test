@@ -36,7 +36,7 @@ def make_url_list(save_name):
     f = open(save_url,'w')
     for i in range(1,9):
         urls =[]
-        for j in range(1,40):
+        for j in range(1,2):
             address = "https://gunosy.com/categories/{i}?page={j}".format(i=i,j=j)
             data = requests.get(address)
             content = data.content
