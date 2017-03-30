@@ -15,6 +15,7 @@ def read_data(p_data):
     header = df.columns
     values = df.values
     return header,values
+
 def train_test_split(values):
     train = []
     test = []
@@ -32,7 +33,6 @@ def train_test_split(values):
             test.extend(values_label[int(train_num):])
 
     return train,test,train_num
-
 
 def make_vocab_from_article(string):
     mc = mecab()
@@ -68,7 +68,6 @@ def make_counters(values):
     for counter in counters:
         counters[9] += counter
     return counters
-
 
 def make_word_number_dict(counters,train_num):
     prob_dic={}
@@ -107,7 +106,7 @@ def save_data(filename,obj):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="This script process data for machine learning")
     parser.add_argument("path",type=str,help="path of your learning data")
-    parser.add_argument("-s","--split",action ="store_true")
+    parser.add_argument("-s","--split",action ="store_true",help="Whether you want to split the data")
     args =parser.parse_args()
     p_data = args.path
     n_data = "".join(p_data.split(".")[:-1])

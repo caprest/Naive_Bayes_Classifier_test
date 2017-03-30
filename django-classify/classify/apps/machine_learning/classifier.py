@@ -88,7 +88,6 @@ class Classifier():
         label = self.calic_label(url)
         return self.categories[label]
 
-
     def validate_accuracy(self,test):
         correct = 0
         all_number = len(test)
@@ -105,7 +104,7 @@ class Classifier():
 test_sentences =[
     "野球人生終わった",
     "お笑いタレントとして知られる山田太郎が死んでしまった。",
-    "安倍総理がサンバを踊った。"
+    "安倍総理がサンバを踊った。",
     ""
 ]
 test_url = ["https://gunosy.com/articles/RChau","hoge","http://sonzaisinai.com/ningensei/dame"]
